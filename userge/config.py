@@ -94,13 +94,13 @@ class Config:
     IMGFLIP_ID = os.environ.get('IMGFLIP_ID', None)
     IMGFLIP_PASS = os.environ.get('IMGFLIP_PASS', None)
     ALLOW_NSFW = os.environ.get("ALLOW_NSFW", "False")
-    pmlog_grp = os.environ.get("PM_LOG_GROUP_ID", None)
-    PM_LOG_GROUP_ID = int(pmlog_grp) if pmlog_grp else None
+    PM_LOG_GROUP_ID = int(os.environ.get("PM_LOG_GROUP_ID", 0))
     PM_LOGGING = False
     DEEP_AI = os.environ.get("DEEP_AI", None)
     ### Last FM
     LASTFM_USERNAME = os.environ.get("LASTFM_USERNAME", None)
     LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY", None)
+    TG_IDS = [777000, 1087968824]
 
 
 def get_version() -> str:
@@ -110,13 +110,13 @@ def get_version() -> str:
         if "/thewhiteharlot/purple-x" in Config.UPSTREAM_REPO.lower():
             diff = list(_REPO.iter_commits(f'v{ver}..HEAD'))
             if diff:
-                return f"{ver}-ROGUE.{len(diff)}"
+                return f"{ver}-AMETHYST.{len(diff)}"
         else:
             diff = list(_REPO.iter_commits(f'{Config.UPSTREAM_REMOTE}/alpha..HEAD'))
             if diff:
                 return f"{ver}-fork-[X].{len(diff)}"
     except Exception as e:
         _LOG.error(e)
-        return "For Fix See -> https://github.com/code-rgb/USERGE-X/issues/17"
+        return "0.3.2-PURPLE-X"
     return ver
 
